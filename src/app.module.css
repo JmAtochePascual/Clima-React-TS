@@ -9,7 +9,6 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
-  justify-items: center;
 }
 
 @media (min-width: 768px) {

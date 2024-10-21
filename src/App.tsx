@@ -1,4 +1,5 @@
 import styles from './app.module.css'
+import Form from './components/Form/Form'
 
 function App() {
 
@@ -7,7 +8,8 @@ function App() {
       <h1 className={styles.title}>Buscador clima</h1>
 
       <div className={styles.container}>
-        <div className="1">1</div>
+        <Form />
+
         <div className="2">2</div>
       </div>
     </>
