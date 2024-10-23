@@ -27,7 +27,10 @@ const Form = ({ fetchWeather }: FormProps) => {
       return
     }
 
-    fetchWeather(search)
+    fetchWeather(search);
+
+    // Limpiar formulario
+    setSearch({ city: '', country: '' })
   }
 
   return (

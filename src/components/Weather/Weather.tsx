@@ -11,7 +11,7 @@ const Weather = ({ weather }: TWeatherProps) => {
 
   return (
     <div className={style.weather__container}>
-      <h2 className={style.weather__title}>Clima de {name}</h2>
+      <h2 className={style.weather__title}>{name}</h2>
       <p className={style.weather__subtitle}> {formatTemperature(temp)} °C</p>
       <div className={style.weather__content}>
         <p>MIN: <span>{formatTemperature(temp_min)} °C</span></p>
