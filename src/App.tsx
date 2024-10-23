@@ -1,9 +1,10 @@
 import styles from './app.module.css'
 import Form from './components/Form/Form'
+import Weather from './components/Weather/Weather';
 import { useWeather } from './hooks/useWeather'
 
 function App() {
-  const { fetchWeather } = useWeather();
+  const { weather, fetchWeather } = useWeather();
 
   return (
     <>
@@ -14,7 +15,8 @@ function App() {
           fetchWeather={fetchWeather}
         />
 
-        <div className="2">2</div>
+        {weather.name && <Weather weather={weather} />}
+
       </div>
     </>
   )
