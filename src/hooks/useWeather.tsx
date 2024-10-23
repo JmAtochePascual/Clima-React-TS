@@ -13,29 +13,45 @@ const weatherchSchema = z.object({
   }),
 })
 
+// Inferir el tipo de datos
 export type TWeather = z.infer<typeof weatherchSchema>
 
-export const useWeather = () => {
-  const [weather, setWeather] = useState<TWeather>({
-    name: "",
-    main: {
-      temp: 0,
-      temp_min: 0,
-      temp_max: 0,
-    },
-  })
-  const [spinner, setSpinner] = useState(false);
+// Estado inicial
+const initialState: TWeather = {
+  name: "",
+  main: {
+    temp: 0,
+    temp_min: 0,
+    temp_max: 0,
+  },
+}
 
+export const useWeather = () => {
+  const [weather, setWeather] = useState<TWeather>(initialState);
+  const [spinner, setSpinner] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+
+  // Consultar la API del clima
   const fetchWeather = async (search: TSearch) => {
     const { city, country } = search;
     const API_KEY = import.meta.env.VITE_API_KEY;
 
+    // Mostrar spinner
     setSpinner(true);
+
+    // Limpiar el estado
+    setWeather(initialState);
 
     try {
       const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`
 
       const response = await axios.get(geoURL)
+
+      if (!response.data[0]) {
+        setNotFound(true);
+        return;
+      }
+
       const { lat, lon } = response.data[0];
 
       const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
@@ -45,6 +61,7 @@ export const useWeather = () => {
 
       if (result.success) {
         setWeather(result.data);
+        setNotFound(false);
       }
 
     } catch (error) {
@@ -57,6 +74,7 @@ export const useWeather = () => {
   return {
     weather,
     spinner,
+    notFound,
     fetchWeather
   }
 

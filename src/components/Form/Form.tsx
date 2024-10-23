@@ -22,15 +22,20 @@ const Form = ({ fetchWeather }: FormProps) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+    // Validar campos vacíos en el formulario
     if (Object.values(search).includes('')) {
       setAlert('Todos los campos son obligatorios')
       return
     }
 
+    // Consultar la API del clima
     fetchWeather(search);
 
     // Limpiar formulario
-    setSearch({ city: '', country: '' })
+    setSearch({ city: '', country: '' });
+
+    // Limpiar alerta
+    setAlert('');
   }
 
   return (
