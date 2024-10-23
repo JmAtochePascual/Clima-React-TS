@@ -4,11 +4,12 @@ import styles from './Form.module.css'
 import { TSearch } from '../../types'
 import Alert from '../Alert/Alert'
 
-const Form = () => {
-  const [search, setSearch] = useState<TSearch>({
-    city: '',
-    country: ''
-  })
+type FormProps = {
+  fetchWeather: (search: TSearch) => Promise<void>
+}
+
+const Form = ({ fetchWeather }: FormProps) => {
+  const [search, setSearch] = useState<TSearch>({ city: '', country: '' })
   const [alert, setAlert] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -26,7 +27,7 @@ const Form = () => {
       return
     }
 
-    console.log(search)
+    fetchWeather(search)
   }
 
   return (
