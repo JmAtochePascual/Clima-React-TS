@@ -1,4 +1,4 @@
-import styles from './app.module.css'
+import './app.css'
 import Alert from './components/Alert/Alert';
 import Form from './components/Form/Form'
 import Spinner from './components/Spinner/Spinner';
@@ -10,9 +10,9 @@ function App() {
 
   return (
     <>
-      <h1 className={styles.title}>Buscador clima</h1>
+      <h1 className="title">Buscador clima</h1>
 
-      <div className={styles.container}>
+      <div className="container">
 
         <Form fetchWeather={fetchWeather} />
 
