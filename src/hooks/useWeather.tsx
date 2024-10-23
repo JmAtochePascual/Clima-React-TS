@@ -24,10 +24,13 @@ export const useWeather = () => {
       temp_max: 0,
     },
   })
+  const [spinner, setSpinner] = useState(false);
 
   const fetchWeather = async (search: TSearch) => {
     const { city, country } = search;
     const API_KEY = import.meta.env.VITE_API_KEY;
+
+    setSpinner(true);
 
     try {
       const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`
@@ -46,11 +49,14 @@ export const useWeather = () => {
 
     } catch (error) {
       console.log(error)
+    } finally {
+      setSpinner(false);
     }
   }
 
   return {
     weather,
+    spinner,
     fetchWeather
   }
 
