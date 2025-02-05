@@ -10,7 +10,10 @@ function App() {
 
   return (
     <>
-      <h1 className={styles.title}>Buscador de clima</h1>
+      <h1
+        className={styles.title}>
+        Buscador de clima
+      </h1>
 
       <main className={styles.container}>
         <div className="">
