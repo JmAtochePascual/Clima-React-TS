@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { countries } from '../../data/countries'
 import styles from './Form.module.css'
 import { TSearch } from '../../types'
+import Alert from '../Alert/Alert'
 
 const INITIAL_STATE: TSearch = {
   city: '',
@@ -10,6 +11,7 @@ const INITIAL_STATE: TSearch = {
 
 const Form = () => {
   const [search, setSearch] = useState<TSearch>(INITIAL_STATE);
+  const [alert, setAlert] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setSearch({ ...search, [event.target.name]: event.target.value })
@@ -19,6 +21,7 @@ const Form = () => {
     event.preventDefault();
 
     if (Object.values(search).includes('')) {
+      setAlert('Todos los campos son obligatorios');
       return
     }
 
@@ -29,6 +32,8 @@ const Form = () => {
     <form
       onSubmit={handleSubmit}
       className={styles.form}>
+
+      {alert && <Alert alert={alert} />}
 
       <div className={styles.campo}>
         <label
@@ -51,7 +56,7 @@ const Form = () => {
         <label
           htmlFor="country"
           className={styles.label}>
-          Ciudad:
+          País:
         </label>
 
         <select
