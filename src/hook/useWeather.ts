@@ -16,11 +16,13 @@ export const useWeather = () => {
     const GEO_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`;
 
     setLoading(true);
+    setNotFound(false);
 
     try {
       const { data } = await axios(GEO_URL);
 
       if (!data[0]) {
+        setWeather(INITIAL_WEATHER);
         setNotFound(true);
         return;
       }
@@ -32,7 +34,6 @@ export const useWeather = () => {
       const result = WeatherSchema.safeParse(response);
 
       if (result.success) {
-        setLoading(false);
         setWeather(result.data);
       }
 

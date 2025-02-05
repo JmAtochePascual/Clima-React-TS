@@ -6,7 +6,7 @@ import WeatherDetail from './components/WeatherDetail/WeatherDetail';
 import { useWeather } from './hook/useWeather';
 
 function App() {
-  const { weather, loading, hasWeather, fecthWeather } = useWeather();
+  const { weather, loading, notFound, hasWeather, fecthWeather } = useWeather();
 
   return (
     <>
@@ -24,7 +24,7 @@ function App() {
             ? <Spinner />
             : hasWeather
               ? <WeatherDetail weather={weather} />
-              : <Alert alert="No se encontraron resultados" />
+              : notFound && <Alert alert="No se encontraron resultados" />
         }
 
       </main>
