@@ -6,12 +6,15 @@ import { INITIAL_WEATHER } from "../data/initialStates";
 
 export const useWeather = () => {
   const [weather, setWeather] = useState<TWeather>(INITIAL_WEATHER);
+  const [loading, setLoading] = useState(false);
   const hasWeather = weather.name !== '';
 
   const fecthWeather = async (search: TSearch) => {
     const { city, country } = search;
     const API_KEY = import.meta.env.VITE_API_KEY;
     const GEO_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`;
+
+    setLoading(true);
 
     try {
       const { data } = await axios(GEO_URL);
@@ -22,16 +25,20 @@ export const useWeather = () => {
       const result = WeatherSchema.safeParse(response);
 
       if (result.success) {
+        setLoading(false);
         setWeather(result.data);
       }
 
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
   return {
     weather,
+    loading,
     hasWeather,
     fecthWeather,
   }
