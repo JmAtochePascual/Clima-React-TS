@@ -26,8 +26,11 @@ function App() {
               ? <WeatherDetail weather={weather} />
               : notFound && <Alert alert="No se encontraron resultados" />
         }
-
       </main>
+
+      <footer className={styles.footer}>
+        <p className={styles.footer_text}> <span className={styles.footer_span}>JMCode</span> | ©2025 - Transformando ideas en realidad.</p>
+      </footer>
     </>
   )
 }

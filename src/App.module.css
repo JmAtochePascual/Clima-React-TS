@@ -1,7 +1,7 @@
 .title {
+  margin-bottom: 5rem;
   text-align: center;
   font-size: 3rem;
-  margin: 5rem auto;
   color: var(--white);
 }
 
@@ -15,4 +15,23 @@
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 4rem;
+}
+
+.footer_text {
+  text-align: center;
+  color: var(--white);
+
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+}
+
+.footer_span {
+  font-weight: 700;
 }
