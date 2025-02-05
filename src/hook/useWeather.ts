@@ -7,6 +7,7 @@ import { INITIAL_WEATHER } from "../data/initialStates";
 export const useWeather = () => {
   const [weather, setWeather] = useState<TWeather>(INITIAL_WEATHER);
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const hasWeather = weather.name !== '';
 
   const fecthWeather = async (search: TSearch) => {
@@ -18,6 +19,12 @@ export const useWeather = () => {
 
     try {
       const { data } = await axios(GEO_URL);
+
+      if (!data[0]) {
+        setNotFound(true);
+        return;
+      }
+
       const { lat, lon } = data[0];
       const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
@@ -38,6 +45,7 @@ export const useWeather = () => {
 
   return {
     weather,
+    notFound,
     loading,
     hasWeather,
     fecthWeather,

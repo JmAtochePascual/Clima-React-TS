@@ -1,4 +1,5 @@
 import styles from './App.module.css'
+import Alert from './components/Alert/Alert';
 import Form from './components/Form/Form'
 import Spinner from './components/Spinner/Spinner';
 import WeatherDetail from './components/WeatherDetail/WeatherDetail';
@@ -21,7 +22,9 @@ function App() {
         {
           loading
             ? <Spinner />
-            : hasWeather && <WeatherDetail weather={weather} />
+            : hasWeather
+              ? <WeatherDetail weather={weather} />
+              : <Alert alert="No se encontraron resultados" />
         }
 
       </main>
