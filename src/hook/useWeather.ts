@@ -6,6 +6,7 @@ import { INITIAL_WEATHER } from "../data/initialStates";
 
 export const useWeather = () => {
   const [weather, setWeather] = useState<TWeather>(INITIAL_WEATHER);
+  const hasWeather = weather.name !== '';
 
   const fecthWeather = async (search: TSearch) => {
     const { city, country } = search;
@@ -31,6 +32,7 @@ export const useWeather = () => {
 
   return {
     weather,
+    hasWeather,
     fecthWeather,
   }
 }
