@@ -1,7 +1,9 @@
 import styles from './App.module.css'
 import Form from './components/Form/Form'
+import { useWeather } from './hook/useWeather';
 
 function App() {
+  const { fecthWeather } = useWeather();
 
   return (
     <>
@@ -9,7 +11,9 @@ function App() {
 
       <main className={styles.container}>
         <div className="">
-          <Form />
+          <Form
+            fecthWeather={fecthWeather}
+          />
         </div>
 
         <div className="">2</div>

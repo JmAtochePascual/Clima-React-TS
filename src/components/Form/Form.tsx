@@ -3,13 +3,13 @@ import { countries } from '../../data/countries'
 import styles from './Form.module.css'
 import { TSearch } from '../../types'
 import Alert from '../Alert/Alert'
+import { INITIAL_STATE } from '../../data/initialStates'
 
-const INITIAL_STATE: TSearch = {
-  city: '',
-  country: ''
+type TFormProps = {
+  fecthWeather: (search: TSearch) => void
 }
 
-const Form = () => {
+const Form = ({ fecthWeather }: TFormProps) => {
   const [search, setSearch] = useState<TSearch>(INITIAL_STATE);
   const [alert, setAlert] = useState('');
 
@@ -25,7 +25,7 @@ const Form = () => {
       return
     }
 
-    console.log(search)
+    fecthWeather(search);
   }
 
   return (
