@@ -24,7 +24,7 @@ const Form = ({ fecthWeather }: TFormProps) => {
       setAlert('Todos los campos son obligatorios');
       return
     }
-
+    setAlert('');
     fecthWeather(search);
 
     // Reset form
