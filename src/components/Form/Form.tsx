@@ -26,6 +26,9 @@ const Form = ({ fecthWeather }: TFormProps) => {
     }
 
     fecthWeather(search);
+
+    // Reset form
+    setSearch(INITIAL_STATE);
   }
 
   return (
