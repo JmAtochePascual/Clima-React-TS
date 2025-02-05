@@ -13,7 +13,7 @@ export const useWeather = () => {
   const fecthWeather = async (search: TSearch) => {
     const { city, country } = search;
     const API_KEY = import.meta.env.VITE_API_KEY;
-    const GEO_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`;
+    const GEO_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&appid=${API_KEY}`;
 
     setLoading(true);
 
